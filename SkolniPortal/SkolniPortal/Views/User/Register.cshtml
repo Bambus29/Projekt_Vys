@@ -1,5 +1,62 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Registration";
 }
+<div class="nastred">
+    <h1>Registration</h1>
+    @if (ViewData["chyba"] != null)
+    {
+        <div class="error">@ViewData["chyba"]</div>
+    }
+    <form action="/User/Register" method="post">
+
+
+        <div>
+            <label>login (bez čísla):</label><br>               <!--login-->
+            <input type="text" name="login"><br>
+        </div>
+
+        <div>
+            <label>číslo loginu:</label><br>                        <!--číslo loginu-->
+            <input type="number" name="login"><br>
+        </div>
+       
+        <select>
+            <optgroup label="EP">
+                <option>1.EP</option>
+                <option>2.EP</option>
+                <option>3.EP</option>
+                <option>4.EP</option>
+            </optgroup>
+
+            <optgroup label="IT">
+                <option>1.IT</option>
+                <option>2.IT</option>
+                <option>3.IT</option>
+                <option>4.IT</option>
+            </optgroup>
+
+            <optgroup label="S">
+                <option>1.S</option>
+                <option>2.S</option>
+                <option>3.S</option>
+                <option>4.S</option>
+            </optgroup>
+
+            <optgroup label="ST">
+                <option>1.ST</option>
+                <option>2.ST</option>
+                <option>3.ST</option>
+                <option>4.ST</option>
+            </optgroup>
+        </select>
+
+        <div>
+
+        <label>Password:</label><br>
+        <input type="password" name="password"><br />                           <!--hesla-->
+        <input type="password" name="passwordcheck"><br><br>
+        <input type="submit" value="Submit">
+        </div>
+
+    </form>
+</div>
