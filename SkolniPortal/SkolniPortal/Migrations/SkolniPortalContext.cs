@@ -10,6 +10,7 @@ namespace SkolniPortal.Migrations
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Zasedak> Zasedaky { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkolniPortal.Migrations;
 
@@ -10,9 +11,11 @@ using SkolniPortal.Migrations;
 namespace SkolniPortal.Migrations
 {
     [DbContext(typeof(SkolniPortalContext))]
-    partial class SkolniPortalContextModelSnapshot : ModelSnapshot
+    [Migration("20260526091636_Zasedaky")]
+    partial class Zasedaky
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,30 +51,6 @@ namespace SkolniPortal.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("SkolniPortal.Models.Zasedak", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.PrimitiveCollection<string>("Mista")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("forTrida")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("pocetMist")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Zasedaky");
                 });
 #pragma warning restore 612, 618
         }

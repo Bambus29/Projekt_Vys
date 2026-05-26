@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkolniPortal.Migrations;
 
@@ -10,9 +11,11 @@ using SkolniPortal.Migrations;
 namespace SkolniPortal.Migrations
 {
     [DbContext(typeof(SkolniPortalContext))]
-    partial class SkolniPortalContextModelSnapshot : ModelSnapshot
+    [Migration("20260526092310_ZasedakFix")]
+    partial class ZasedakFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
