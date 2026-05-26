@@ -19,6 +19,11 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-image: url('/obrazky/bckg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
