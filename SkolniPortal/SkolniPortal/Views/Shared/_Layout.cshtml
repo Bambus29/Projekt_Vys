@@ -17,25 +17,19 @@
 
 
 <body>
-    <header class="position-relative" style="background-image: url('/obrazky/SPS.png'); background-size: cover; background-position: center;">
-        <div class="position-absolute top-0 start-0 p-3 z-3">
-            <img src="~/obrazky/logo_web.png" alt="Logo Web" height="50" />
+    <header class="position-relative sticky-top" style="background-color: #223974;">
+        <div class="position-absolute z-3" style="top: 15px; left: 15px;">
+            <a asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/obrazky/SPS.png" alt="SPS Logo" height="60" />
+            </a>
         </div>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white bg-opacity-75 border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white bg-opacity-75 border-bottom box-shadow mb-3 mt-4">
             <div class="container-fluid">
-                <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">
-                    SkolniPortal
-                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                    </ul>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="btn btn-primary px-4 rounded-pill shadow-sm" asp-area="" asp-controller="User" asp-action="Login">Přihlásit se</a>
@@ -45,17 +39,31 @@
             </div>
         </nav>
     </header>
+
+
+
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
+
+
+
+
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2026 - Školni Portal 
         </div>
     </footer>
+
+
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
