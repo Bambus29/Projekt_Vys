@@ -14,9 +14,13 @@ namespace SkolniPortal.Migrations
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
             // Konfiguraci modelů můžete přidat zde
+            // Ensure user name is unique at the database level to prevent duplicates
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Name)
+                .IsUnique();
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

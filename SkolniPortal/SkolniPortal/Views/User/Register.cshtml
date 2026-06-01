@@ -1,63 +1,54 @@
 ﻿@{
-    ViewData["Title"] = "Registration";
+    ViewData["Title"] = "Register";
 }
-<div class="nastred">
-    <h1>Registration</h1>
-    @if (ViewData["chyba"] != null)
-    {
-        <div class="error">@ViewData["chyba"]</div>
-    }
-    <form action="/User/Register" method="post">
-
-
-        <div>
-            <label>login (bez čísla):</label><br>               <!--login-->
-            <input type="text" name="name">
-            <a>(zavináč)spstrutnov.cz</a><br>
+<div class="nastred card p-4 shadow-sm" style="max-width:480px;margin:30px auto;">
+    <h2 class="mb-3">Registrace</h2>
+    @if (ViewData["chyba"] != null) { <div class="alert alert-danger">@ViewData["chyba"]</div> }
+    <form asp-controller="User" asp-action="Register" method="post">
+        <div class="mb-3">
+            <label class="form-label">Login (bez čísla)</label>
+            <div class="input-group">
+                <input class="form-control" type="text" name="name" placeholder="uživatelské jméno" required />
+                <span class="input-group-text">@spstrutnov.cz</span>
+            </div>
         </div>
 
-        <div>
-            <label>číslo loginu:</label><br>                        <!--číslo loginu-->
-            <input type="number" name="kasta"><br>
-        </div>
-       
-        <select name="trida">
-            <optgroup label="EP">
-                <option>1.EP</option>
-                <option>2.EP</option>
-                <option>3.EP</option>
-                <option>4.EP</option>
-            </optgroup>
-
-            <optgroup label="IT">
-                <option>1.IT</option>
-                <option>2.IT</option>
-                <option>3.IT</option>
-                <option>4.IT</option>
-            </optgroup>
-
-            <optgroup label="S">
-                <option>1.S</option>
-                <option>2.S</option>
-                <option>3.S</option>
-                <option>4.S</option>
-            </optgroup>
-
-            <optgroup label="ST">
-                <option>1.ST</option>
-                <option>2.ST</option>
-                <option>3.ST</option>
-                <option>4.ST</option>
-            </optgroup>
-        </select>
-
-        <div>
-
-        <label>Password:</label><br>
-        <input type="password" name="password"><br />                           <!--hesla-->
-        <input type="password" name="passwordcheck"><br><br>
-        <input type="submit" value="Submit">
+        <div class="mb-3">
+            <label class="form-label">Číslo loginu (kasta)</label>
+            <input class="form-control" type="number" name="kasta" placeholder="např. 0 pro učitele" />
         </div>
 
+        <div class="mb-3">
+            <label class="form-label">Třída</label>
+            <select class="form-select" name="trida">
+                <option value="">Vyber třídu</option>
+                <optgroup label="EP">
+                    <option>1.EP</option><option>2.EP</option><option>3.EP</option><option>4.EP</option>
+                </optgroup>
+                <optgroup label="IT">
+                    <option>1.IT</option><option>2.IT</option><option>3.IT</option><option>4.IT</option>
+                </optgroup>
+                <optgroup label="S">
+                    <option>1.S</option><option>2.S</option><option>3.S</option><option>4.S</option>
+                </optgroup>
+                <optgroup label="ST">
+                    <option>1.ST</option><option>2.ST</option><option>3.ST</option><option>4.ST</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Heslo</label>
+            <input class="form-control" type="password" name="password" required minlength="3" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Potvrzení hesla</label>
+            <input class="form-control" type="password" name="passwordcheck" required />
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <a asp-controller="User" asp-action="Login">Máte účet? Přihlaste se</a>
+            <button class="btn btn-primary" type="submit">Registrovat</button>
+        </div>
     </form>
 </div>
