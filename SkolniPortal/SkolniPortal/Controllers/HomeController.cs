@@ -11,6 +11,11 @@ namespace SkolniPortal.Controllers
             return View();
         }
 
+        public IActionResult Zasedak()
+        {
+            return View();
+        }
+
         
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

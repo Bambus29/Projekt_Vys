@@ -18,21 +18,24 @@
 
 <body>
     <header class="position-relative sticky-top" style="background-color: #223974;">
-        <div class="position-absolute z-3" style="top: 15px; left: 15px;">
+        <div class="position-absolute z-3" style="top: 10px; left: 15px;">
             <a asp-area="" asp-controller="Home" asp-action="Index">
-                <img src="~/obrazky/SPS.png" alt="SPS Logo" height="60" />
+                <img src="~/obrazky/SPS.png" alt="SPS Logo" height="45" />
             </a>
         </div>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white bg-opacity-75 border-bottom box-shadow mb-3 mt-4">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark py-2">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
-                    <ul class="navbar-nav">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end align-items-center">
+                    <ul class="navbar-nav gap-2">
                         <li class="nav-item">
-                            <a class="btn btn-primary px-4 rounded-pill shadow-sm" asp-area="" asp-controller="User" asp-action="Login">Přihlásit se</a>
+                            <a class="btn btn-header px-4 rounded-pill shadow-sm fw-bold" asp-area="" asp-controller="Home" asp-action="Zasedak">Zasedací pořádky</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-header px-4 rounded-pill shadow-sm fw-bold" href="#">O nás</a>
                         </li>
                     </ul>
                 </div>
