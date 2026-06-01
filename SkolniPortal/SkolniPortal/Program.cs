@@ -16,6 +16,15 @@ namespace SkolniPortal
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            // Add session services
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+                options.IdleTimeout = TimeSpan.FromHours(8);
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -28,6 +37,8 @@ namespace SkolniPortal
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 
