@@ -23,6 +23,11 @@ namespace SkolniPortal.Controllers
             return View(zasedaky);
         }
 
+       
+        public IActionResult ZasedakView()
+        {
+            return View();
+        }
         [HttpPost]
         public IActionResult CreateZasedak(string forTrida, int pocetMist)
         {

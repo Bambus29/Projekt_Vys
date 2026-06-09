@@ -59,8 +59,37 @@ else
         {
             <hr class="my-5">
             <h3>Vytvořit nový zasedák</h3>
-            <form asp-controller="Zasedak" asp-action="ZasedakView" method="post" class="mt-3">
-                
+            <form asp-controller="Zasedak" asp-action="CreateZasedak" method="post" class="mt-3">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="forTrida" class="form-label">Třída</label>
+                        <select name="forTrida" id="forTrida" class="form-control" required>
+                            <option value="">-- Vyber třídu --</option>
+                            <option>1.EP</option>
+                            <option>2.EP</option>
+                            <option>3.EP</option>
+                            <option>4.EP</option>
+                            <option>1.IT</option>
+                            <option>2.IT</option>
+                            <option>3.IT</option>
+                            <option>4.IT</option>
+                            <option>1.S</option>
+                            <option>2.S</option>
+                            <option>3.S</option>
+                            <option>4.S</option>
+                            <option>1.ST</option>
+                            <option>2.ST</option>
+                            <option>3.ST</option>
+                            <option>4.ST</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="pocetMist" class="form-label">Počet míst</label>
+                        <input type="number" name="pocetMist" id="pocetMist" class="form-control" min="1" max="50" value="30" required>
+                    </div>
+                </div>
+
                 <button type="submit" class="btn btn-success">Vytvořit zasedák</button>
             </form>
         }
