@@ -1,8 +1,97 @@
 ﻿@{
     ViewData["Title"] = "Zasedací pořádky";
+    var userId = Context.Session.GetInt32("UserId");
+    var userName = Context.Session.GetString("UserName");
+    var userKasta = Context.Session.GetString("UserKasta");
 }
 
-<div class="container mt-4 bg-white bg-opacity-75 p-5 rounded-3 shadow-sm">
-    <h1 class="display-4 fw-bold text-center">Zasedací pořádky</h1>
-    <p class="fs-5 text-center text-muted">Zde si brzy budete moci prohlédnout zasedací pořádky jednotlivých tříd.</p>
-</div>
+@if (userId == null)
+{
+    <div class="container mt-4">
+        <div class="alert alert-warning" role="alert">
+            <h4>Nejsi přihlášen/a!</h4>
+            <p>Aby ses mohl/a podívat na zasedací pořádky, musíš se nejdříve přihlásit.</p>
+            <a asp-controller="User" asp-action="Login" class="btn btn-primary">Přihlásit se</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container mt-4 bg-white bg-opacity-75 p-5 rounded-3 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="display-4 fw-bold">Zasedací pořádky</h1>
+            <small class="text-muted">Přihlášen/a jako: <strong>@userName</strong> (@userKasta)</small>
+        </div>
+
+        @if (Model != null && Model.Count > 0)
+        {
+            <div class="row">
+                @foreach (var zasedak in Model)
+                {
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">@zasedak.forTrida</h5>
+                                <p class="card-text">
+                                    <strong>Počet míst:</strong> @zasedak.pocetMist<br>
+                                   
+                                </p>
+                                <a href="@Url.Action("Edit", "Zasedak", new { id = zasedak.Id })" class="btn btn-sm btn-info">Zobrazit detail</a>
+                                
+                                @if (userKasta == "Učitel")
+                                {
+                                    <a href="@Url.Action("Edit", "Zasedak", new { id = zasedak.Id })" class="btn btn-sm btn-warning">Upravit</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                <p>Zatím nejsou vytvořeny žádné zasedací pořádky.</p>
+            </div>
+        }
+
+        @if (userKasta == "Učitel")
+        {
+            <hr class="my-5">
+            <h3>Vytvořit nový zasedák</h3>
+            <form asp-controller="Zasedak" asp-action="CreateZasedak" method="post" class="mt-3">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="forTrida" class="form-label">Třída</label>
+                        <select name="forTrida" id="forTrida" class="form-control" required>
+                            <option value="">-- Vyber třídu --</option>
+                            <option>1.EP</option>
+                            <option>2.EP</option>
+                            <option>3.EP</option>
+                            <option>4.EP</option>
+                            <option>1.IT</option>
+                            <option>2.IT</option>
+                            <option>3.IT</option>
+                            <option>4.IT</option>
+                            <option>1.S</option>
+                            <option>2.S</option>
+                            <option>3.S</option>
+                            <option>4.S</option>
+                            <option>1.ST</option>
+                            <option>2.ST</option>
+                            <option>3.ST</option>
+                            <option>4.ST</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="pocetMist" class="form-label">Počet míst</label>
+                        <input type="number" name="pocetMist" id="pocetMist" class="form-control" min="1" max="50" value="30" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success">Vytvořit zasedák</button>
+            </form>
+        }
+    </div>
+}

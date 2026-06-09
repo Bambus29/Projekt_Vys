@@ -7,15 +7,31 @@ namespace SkolniPortal.Controllers
     public class ZasedakController : Controller
     {
         private readonly SkolniPortalContext _db;
-        public ZasedakController(SkolniPortalContext db)
+        public ZasedakController(SkolniPortalContext db) => _db = db;
+
+        private bool IsUserLoggedIn() => HttpContext.Session.GetInt32("UserId") != null;
+        private string GetUserKasta() => HttpContext.Session.GetString("UserKasta") ?? "";
+
+        public IActionResult Index()
         {
-            _db = db;
+            // Pokud není přihlášen, přesměruj na login
+            if (!IsUserLoggedIn())
+                return RedirectToAction("Login", "User");
+
+            // Zobraz všechny zasedáky
+            var zasedaky = _db.Zasedaky.ToList();
+            return View(zasedaky);
         }
+
         [HttpPost]
         public IActionResult CreateZasedak(string forTrida, int pocetMist)
         {
+            // Pouze učitelé mohou vytvářet
+            if (!IsUserLoggedIn() || GetUserKasta() != "Učitel")
+                return RedirectToAction("Index");
 
-
+            if (string.IsNullOrWhiteSpace(forTrida) || pocetMist <= 0)
+                return BadRequest("Neplatné údaje");
 
             var z = new Zasedak
             {
@@ -28,6 +44,7 @@ namespace SkolniPortal.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         public IActionResult Zasedak()
         {
             return View();
