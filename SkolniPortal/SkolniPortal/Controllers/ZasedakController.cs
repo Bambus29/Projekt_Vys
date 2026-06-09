@@ -35,8 +35,6 @@ namespace SkolniPortal.Controllers
             if (!IsUserLoggedIn() || GetUserKasta() != "Učitel")
                 return RedirectToAction("Index");
 
-            if (string.IsNullOrWhiteSpace(forTrida) || pocetMist <= 0)
-                return BadRequest("Neplatné údaje");
 
             var z = new Zasedak
             {
