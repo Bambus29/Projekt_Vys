@@ -30,9 +30,12 @@
                 </li>
             </ul>
             
-            <div class="text-center mt-4">
-                <a class="btn btn-primary btn-lg" asp-area="" asp-controller="User" asp-action="Login">Přejít na přihlášení</a>
-            </div>
+            @if (Context.Session.GetInt32("UserId") == null)
+            {
+                <div class="text-center mt-4">
+                    <a class="btn btn-primary btn-lg" asp-area="" asp-controller="User" asp-action="Login">Přejít na přihlášení</a>
+                </div>
+            }
         </div>
     </div>
 
