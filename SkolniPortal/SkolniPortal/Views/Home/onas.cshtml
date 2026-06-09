@@ -3,22 +3,95 @@
 }
 
 <div class="container mt-5">
-    <h1>O nás</h1>
 
-    <p>
-        Jsme školní portál zaměřený na zjednodušení přístupu k informacím,
-        rozvrhům a organizaci školního života.
-    </p>
+    <!-- HERO -->
+    <div class="text-center p-5 mb-5 rounded-4 text-white"
+         style="background: linear-gradient(135deg, #223974, #2c4aa3);">
+        <h1 class="fw-bold">O našem portálu</h1>
+        <p class="lead mb-0">
+            Moderní školní systém pro přehled, organizaci a jednoduchý přístup k informacím
+        </p>
+    </div>
 
-    <hr />
+    <!-- INTRO -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6">
+            <h2 class="fw-bold mb-3">Kdo jsme</h2>
+            <p>
+                Jsme tým studentů a vývojářů, kteří vytvořili školní portál s cílem
+                zjednodušit každodenní život ve škole. Naším cílem je přehlednost,
+                rychlost a snadná dostupnost všech důležitých informací.
+            </p>
+            <p>
+                Portál neustále vylepšujeme a přidáváme nové funkce podle potřeb studentů i učitelů.
+            </p>
+        </div>
 
-    <h3>Naše cíle</h3>
-    <ul>
-        <li>Jednoduchost</li>
-        <li>Přehlednost</li>
-        <li>Rychlý přístup k informacím</li>
-    </ul>
+        <div class="col-md-6 text-center">
+            <div class="p-4 rounded-4 shadow-sm bg-light">
+                <h5 class="fw-bold mb-3">Rychlé info</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>📚 Školní rozvrhy</li>
+                    <li>🪑 Zasedací pořádky</li>
+                    <li>⚡ Rychlý přístup k informacím</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    <h3>Kontakt</h3>
-    <p>Email: info@skolniportal.cz</p>
+    <!-- CARDS -->
+    <h2 class="fw-bold text-center mb-4">Naše hodnoty</h2>
+
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 rounded-4">
+                <div class="card-body text-center">
+                    <div style="font-size: 40px;">⚡</div>
+                    <h5 class="fw-bold mt-2">Rychlost</h5>
+                    <p class="text-muted">
+                        Vše musí být dostupné během pár kliknutí bez zbytečného hledání.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 rounded-4">
+                <div class="card-body text-center">
+                    <div style="font-size: 40px;">🎯</div>
+                    <h5 class="fw-bold mt-2">Přehlednost</h5>
+                    <p class="text-muted">
+                        Minimalistický design, který neodvádí pozornost od důležitých informací.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 rounded-4">
+                <div class="card-body text-center">
+                    <div style="font-size: 40px;">🛠️</div>
+                    <h5 class="fw-bold mt-2">Vylepšování</h5>
+                    <p class="text-muted">
+                        Systém neustále rozvíjíme podle zpětné vazby studentů.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center p-5 rounded-4 text-white"
+         style="background: #223974;">
+        <h3 class="fw-bold">Chceš vidět víc?</h3>
+        <p class="mb-4">Podívej se na další funkce školního portálu</p>
+
+        <a asp-controller="Home" asp-action="Zasedak"
+               class="btn btn-light fw-bold px-4 py-2 rounded-pill">
+            Zasedací pořádky
+        </a>
+    </div>
+
 </div>
