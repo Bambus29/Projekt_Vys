@@ -23,7 +23,6 @@ namespace SkolniPortal.Controllers
             return View(zasedaky);
         }
 
-       
         public IActionResult ZasedakView()
         {
             return View();
@@ -35,7 +34,9 @@ namespace SkolniPortal.Controllers
             if (!IsUserLoggedIn() || GetUserKasta() != "Učitel")
                 return RedirectToAction("Index");
 
+            
 
+            // Vytvoř nový zasedák s prázdnými místy
             var z = new Zasedak
             {
                 forTrida = forTrida,
@@ -45,6 +46,8 @@ namespace SkolniPortal.Controllers
 
             _db.Zasedaky.Add(z);
             _db.SaveChanges();
+
+            TempData["success"] = $"Zasedák pro třídu {forTrida} byl úspěšně vytvořen!";
             return RedirectToAction("Index");
         }
 

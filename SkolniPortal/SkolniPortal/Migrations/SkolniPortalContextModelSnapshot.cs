@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SkolniPortal.Migrations;
+using SkolniPortal.Models;
 
 #nullable disable
 
@@ -61,7 +61,7 @@ namespace SkolniPortal.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.PrimitiveCollection<string>("Mista")
+                    b.Property<string>("Mista")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

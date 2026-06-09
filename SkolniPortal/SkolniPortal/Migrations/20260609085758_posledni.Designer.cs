@@ -11,8 +11,8 @@ using SkolniPortal.Models;
 namespace SkolniPortal.Migrations
 {
     [DbContext(typeof(SkolniPortalContext))]
-    [Migration("20260526092310_ZasedakFix")]
-    partial class ZasedakFix
+    [Migration("20260609085758_posledni")]
+    partial class posledni
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,7 +38,7 @@ namespace SkolniPortal.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -49,6 +49,9 @@ namespace SkolniPortal.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -61,16 +64,13 @@ namespace SkolniPortal.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.PrimitiveCollection<string>("Mista")
+                    b.Property<string>("Mista")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("forTrida")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("pocetMist")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

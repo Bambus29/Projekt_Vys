@@ -9,3 +9,4 @@
         public List<string> Mista { get; set; } = new List<string>();
     }
 }
+ 
