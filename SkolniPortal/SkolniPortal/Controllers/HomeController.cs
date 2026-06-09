@@ -11,10 +11,6 @@ namespace SkolniPortal.Controllers
             return View();
         }
 
-        public IActionResult Zasedak()
-        {
-            return View();
-        }
 
         
 

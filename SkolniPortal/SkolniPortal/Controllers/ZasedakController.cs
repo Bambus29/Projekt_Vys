@@ -28,6 +28,10 @@ namespace SkolniPortal.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public IActionResult Zasedak()
+        {
+            return View();
+        }
 
     }
 }
