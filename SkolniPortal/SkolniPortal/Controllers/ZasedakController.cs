@@ -23,7 +23,6 @@ namespace SkolniPortal.Controllers
             return View(zasedaky);
         }
 
-       
         public IActionResult ZasedakView()
         {
             return View();
@@ -35,7 +34,21 @@ namespace SkolniPortal.Controllers
             if (!IsUserLoggedIn() || GetUserKasta() != "Učitel")
                 return RedirectToAction("Index");
 
+            // Validace
+            if (string.IsNullOrWhiteSpace(forTrida) || pocetMist <= 0 || pocetMist > 50)
+            {
+                TempData["error"] = "Neplatné údaje. Počet míst musí být mezi 1 a 50.";
+                return RedirectToAction("Index");
+            }
 
+            // Zkontroluj, že tato třída ještě nemá zasedák
+            if (_db.Zasedaky.Any(z => z.forTrida == forTrida))
+            {
+                TempData["error"] = "Pro tuto třídu již zasedák existuje!";
+                return RedirectToAction("Index");
+            }
+
+            // Vytvoř nový zasedák s prázdnými místy
             var z = new Zasedak
             {
                 forTrida = forTrida,
@@ -45,6 +58,8 @@ namespace SkolniPortal.Controllers
 
             _db.Zasedaky.Add(z);
             _db.SaveChanges();
+
+            TempData["success"] = $"Zasedák pro třídu {forTrida} byl úspěšně vytvořen!";
             return RedirectToAction("Index");
         }
 

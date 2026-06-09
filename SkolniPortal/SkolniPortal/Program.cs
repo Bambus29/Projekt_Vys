@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SkolniPortal.Migrations;
+using SkolniPortal.Models;
 
 namespace SkolniPortal
 {
