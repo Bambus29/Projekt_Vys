@@ -22,11 +22,11 @@ namespace SkolniPortal.Controllers
             var zasedaky = _db.Zasedaky.ToList();
             return View(zasedaky);
         }
-
-        public IActionResult ZasedakView()
+        public IActionResult Zasedak() 
         {
             return View();
-        }
+         }
+
         [HttpPost]
         public IActionResult CreateZasedak(string forTrida, int pocetMist)
         {
@@ -34,7 +34,7 @@ namespace SkolniPortal.Controllers
             if (!IsUserLoggedIn() || GetUserKasta() != "Učitel")
                 return RedirectToAction("Index");
 
-            
+
 
             // Vytvoř nový zasedák s prázdnými místy
             var z = new Zasedak
@@ -51,9 +51,41 @@ namespace SkolniPortal.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Zasedak()
+        [HttpPost]
+        public IActionResult SaveZasedak(int zasedakId, List<string> Mista)
         {
-            return View();
+            // Pouze učitelé mohou upravovat
+            if (!IsUserLoggedIn() || GetUserKasta() != "Učitel")
+                return RedirectToAction("Index");
+
+            // Najdi zasedák
+            var zasedak = _db.Zasedaky.Find(zasedakId);
+            if (zasedak == null)
+            {
+                TempData["error"] = "Zasedák nebyl nalezen!";
+                return RedirectToAction("Index");
+            }
+
+            // Uprav seznam míst - vezmi jen tolik prvků, kolik je pocetMist
+            zasedak.Mista = Mista?.Take(zasedak.pocetMist).ToList() ?? new List<string>();
+
+            // Zajisti, aby měl správnou délku
+            while (zasedak.Mista.Count < zasedak.pocetMist)
+                zasedak.Mista.Add(null);
+
+            _db.SaveChanges();
+
+            TempData["success"] = $"Zasedák pro třídu {zasedak.forTrida} byl úspěšně uložen!";
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult ZasedakView()
+        {
+            if (!IsUserLoggedIn())
+                return RedirectToAction("Login", "User");
+
+            var zasedaky = _db.Zasedaky.ToList();
+            return View(zasedaky);
         }
 
     }
