@@ -11,6 +11,7 @@ namespace SkolniPortal.Controllers
             return View();
         }
 
+<<<<<<< HEAD
         public IActionResult Zasedak()
         {
             return View();
@@ -19,6 +20,8 @@ namespace SkolniPortal.Controllers
         {
             return View();
         }
+=======
+>>>>>>> 9a9ea50dd68f358aa76ec66d0f9124b94d60aab3
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
