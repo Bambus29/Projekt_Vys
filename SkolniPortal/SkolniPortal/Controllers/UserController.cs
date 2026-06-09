@@ -63,7 +63,7 @@ namespace SkolniPortal.Controllers
             HttpContext.Session.SetString("UserName", user.Name);
             HttpContext.Session.SetString("UserKasta", user.Kasta ?? string.Empty);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "User");
         }
 
         public IActionResult Register()
