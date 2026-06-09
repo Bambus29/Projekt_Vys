@@ -14,6 +14,9 @@ namespace SkolniPortal.Controllers
         [HttpPost]
         public IActionResult CreateZasedak(string forTrida, int pocetMist)
         {
+
+
+
             var z = new Zasedak
             {
                 forTrida = forTrida,

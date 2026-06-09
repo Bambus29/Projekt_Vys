@@ -14,6 +14,19 @@ namespace SkolniPortal.Controllers
         {
             _db = db;
         }
+
+        private bool IsUserLoggedIn()
+        {
+            return HttpContext.Session.GetInt32("UserId") != null;
+        }
+
+        private IActionResult RedirectIfNotLoggedIn()
+        {
+            if (!IsUserLoggedIn())
+                return RedirectToAction("Login");
+            return null;
+        }
+
         public IActionResult Login()
         {
             return View();
@@ -57,6 +70,7 @@ namespace SkolniPortal.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Register(string name, string password, string kasta, string trida, string passwordcheck)
         {
@@ -124,9 +138,12 @@ namespace SkolniPortal.Controllers
 
         public IActionResult Logout()
         {
+            var redirect = RedirectIfNotLoggedIn();
+            if (redirect != null)
+                return redirect;
+
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
     }
-
 }

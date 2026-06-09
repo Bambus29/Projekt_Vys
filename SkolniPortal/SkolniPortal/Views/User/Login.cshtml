@@ -1,29 +1,46 @@
 ﻿@{
     ViewData["Title"] = "Login";
+    var userId = Context.Session.GetInt32("UserId");
+    var userName = Context.Session.GetString("UserName");
 }
-<div class="nastred card p-4 shadow-sm" style="max-width:420px;margin:30px auto;">
-    <h2 class="mb-3">Přihlášení</h2>
-    @if (ViewData["chyba"] != null)
-    {
-        <div class="alert alert-danger">@ViewData["chyba"]</div>
-    }
-    <form asp-controller="User" asp-action="Login" method="post">
-        <div class="mb-3">
-            <label class="form-label">Login (bez čísla)</label>
-            <div class="input-group">
-                <input class="form-control" type="text" name="name" placeholder="uživatelské jméno" />
-                <span class="input-group-text">&#64;spstrutnov.cz</span>
+
+@if (userId != null)
+{
+    <div class="nastred card p-4 shadow-sm" style="max-width:420px;margin:30px auto;">
+        <div class="alert alert-success">
+            <h4>Už jsi přihlášen/a!</h4>
+            <p>Uživatel: <strong>@userName</strong></p>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary mt-2">Jít na úvodní stránku</a>
+            <a asp-controller="User" asp-action="Logout" class="btn btn-danger mt-2">Odhlásit se</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="nastred card p-4 shadow-sm" style="max-width:420px;margin:30px auto;">
+        <h2 class="mb-3">Přihlášení</h2>
+        @if (ViewData["chyba"] != null)
+        {
+            <div class="alert alert-danger">@ViewData["chyba"]</div>
+        }
+        <form asp-controller="User" asp-action="Login" method="post">
+            <div class="mb-3">
+                <label class="form-label">Login (bez čísla)</label>
+                <div class="input-group">
+                    <input class="form-control" type="text" name="name" placeholder="uživatelské jméno" />
+                    <span class="input-group-text">&#64;spstrutnov.cz</span>
+                </div>
             </div>
-        </div>
 
-        <div class="mb-3">
-            <label class="form-label">Heslo</label>
-            <input class="form-control" type="password" name="password" />
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Heslo</label>
+                <input class="form-control" type="password" name="password" />
+            </div>
 
-        <div class="d-flex justify-content-between align-items-center">
-            <a asp-controller="User" asp-action="Register">Nemáš účet? Zaregistruj se</a>
-            <button class="btn btn-primary" type="submit">Přihlásit</button>
-        </div>
-    </form>
-</div>
+            <div class="d-flex justify-content-between align-items-center">
+                <a asp-controller="User" asp-action="Register">Nemáš účet? Zaregistruj se</a>
+                <button class="btn btn-primary" type="submit">Přihlásit</button>
+            </div>
+        </form>
+    </div>
+}
