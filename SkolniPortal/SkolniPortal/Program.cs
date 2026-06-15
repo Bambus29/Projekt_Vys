@@ -45,8 +45,9 @@ namespace SkolniPortal
             }
 
             app.UseHttpsRedirection();
-            app.UseRouting();
+            app.UseStaticFiles();
 
+            app.UseRouting();
             app.UseSession();
 
             app.UseAuthorization();
