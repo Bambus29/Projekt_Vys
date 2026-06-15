@@ -6,9 +6,11 @@ namespace SkolniPortal.Models
 {
     public class SkolniPortalContext : DbContext
     {
-        public SkolniPortalContext(DbContextOptions<SkolniPortalContext> options) : base(options)
-        {
-        }
+        // Existing generic constructor (kept for compatibility)
+        public SkolniPortalContext(DbContextOptions<SkolniPortalContext> options) : base(options) { }
+
+        // Additional non-generic constructor to allow derived contexts to pass DbContextOptions<TDerived>
+        public SkolniPortalContext(DbContextOptions options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Zasedak> Zasedaky { get; set; }

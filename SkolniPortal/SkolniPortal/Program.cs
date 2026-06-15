@@ -9,9 +9,12 @@ namespace SkolniPortal
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add DbContext
-            builder.Services.AddDbContext<SkolniPortalContext>(options =>
+            // Add DbContext (use ApplicationDbContext as implementation)
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Map SkolniPortalContext requests to the ApplicationDbContext instance
+            builder.Services.AddScoped<SkolniPortalContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -27,11 +30,11 @@ namespace SkolniPortal
 
             var app = builder.Build();
             // migrace databaze pri startu aplikace
-            using (var scope = app.Services.CreateScope())
-            {
-                var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                db.Database.Migrate();
-            }
+            //¨//using (var scope = app.Services.CreateScope())
+            //{
+            //    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            //    db.Database.Migrate();
+            //}
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
