@@ -17,7 +17,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: 06_AspNetCore/Dockerfile
+      dockerfile: SkolniPortal/Dockerfile
     image: aspnetcore_sk1
     ports:
         - "3000:8080"
