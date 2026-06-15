@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SkolniPortal.Data;
 using SkolniPortal.Migrations;
 using SkolniPortal.Models;
 
@@ -6,8 +7,8 @@ namespace SkolniPortal.Controllers
 {
     public class ZasedakController : Controller
     {
-        private readonly SkolniPortalContext _db;
-        public ZasedakController(SkolniPortalContext db) => _db = db;
+        private readonly ApplicationDbContext _db;
+        public ZasedakController(ApplicationDbContext db) => _db = db;
 
         private bool IsUserLoggedIn() => HttpContext.Session.GetInt32("UserId") != null;
         private string GetUserKasta() => HttpContext.Session.GetString("UserKasta") ?? "";

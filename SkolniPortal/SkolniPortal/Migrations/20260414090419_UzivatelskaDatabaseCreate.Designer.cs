@@ -5,12 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkolniPortal.Models;
+using SkolniPortal.Data;
 
 #nullable disable
 
 namespace SkolniPortal.Migrations
 {
-    [DbContext(typeof(SkolniPortalContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20260414090419_UzivatelskaDatabaseCreate")]
     partial class UzivatelskaDatabaseCreate
     {

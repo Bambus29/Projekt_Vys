@@ -3,14 +3,15 @@ using Microsoft.EntityFrameworkCore;
 using SkolniPortal.Models;
 using BCrypt.Net;
 using SkolniPortal.Migrations;
+using SkolniPortal.Data;
 
 namespace SkolniPortal.Controllers
 {
     public class UserController : Controller
     {
-        private readonly SkolniPortalContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public UserController(SkolniPortalContext db)
+        public UserController(ApplicationDbContext db)
         {
             _db = db;
         }

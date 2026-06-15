@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkolniPortal.Models;
+using SkolniPortal.Data;
 
 #nullable disable
 
 namespace SkolniPortal.Migrations
 {
-    [DbContext(typeof(SkolniPortalContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class SkolniPortalContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

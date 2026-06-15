@@ -1,16 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using SkolniPortal.Models;
 using System.Text.Json;
 
-namespace SkolniPortal.Models
+namespace SkolniPortal.Data
 {
-    public class SkolniPortalContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        // Existing generic constructor (kept for compatibility)
-        public SkolniPortalContext(DbContextOptions<SkolniPortalContext> options) : base(options) { }
-
-        // Additional non-generic constructor to allow derived contexts to pass DbContextOptions<TDerived>
-        public SkolniPortalContext(DbContextOptions options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Zasedak> Zasedaky { get; set; }

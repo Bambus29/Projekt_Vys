@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SkolniPortal.Data;
 using SkolniPortal.Models;
 
 namespace SkolniPortal
@@ -13,8 +14,7 @@ namespace SkolniPortal
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            // Map SkolniPortalContext requests to the ApplicationDbContext instance
-            builder.Services.AddScoped<SkolniPortalContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
