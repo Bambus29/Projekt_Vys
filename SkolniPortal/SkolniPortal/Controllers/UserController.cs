@@ -33,6 +33,20 @@ namespace SkolniPortal.Controllers
             return View();
         }
 
+        public IActionResult Profile()
+        {
+            var redirect = RedirectIfNotLoggedIn();
+            if (redirect != null)
+                return redirect;
+
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+                return RedirectToAction("Login");
+
+            var user = _db.Users.Find(userId.Value);
+            return View(user);
+        }
+
         [HttpPost]
         public IActionResult Login(string name, string password)
         {

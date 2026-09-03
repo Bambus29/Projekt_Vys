@@ -33,6 +33,24 @@ namespace SkolniPortal
             using (var scope = app.Services.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                // Remove duplicate users (keep the one with smallest Id) before applying migrations
+                // This avoids CREATE UNIQUE INDEX failing when existing data contains duplicate Name values.
+                try
+                {
+                    var dedupeSql = @"WITH cte AS (
+  SELECT Id, ROW_NUMBER() OVER (PARTITION BY Name ORDER BY Id) AS rn
+  FROM Users
+)
+DELETE FROM Users WHERE Id IN (SELECT Id FROM cte WHERE rn > 1);";
+                    db.Database.ExecuteSqlRaw(dedupeSql);
+                }
+                catch (Exception ex)
+                {
+                    var logger = scope.ServiceProvider.GetRequiredService<Microsoft.Extensions.Logging.ILogger<Program>>();
+                    logger.LogError(ex, "Failed to deduplicate Users table before migrations.");
+                    throw;
+                }
+
                 db.Database.Migrate();
             }
 
