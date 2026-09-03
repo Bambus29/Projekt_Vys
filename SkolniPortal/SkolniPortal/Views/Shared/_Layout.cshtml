@@ -25,11 +25,13 @@
         </div>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark py-2">
             <div class="container-fluid d-flex justify-content-end">
-                <ul class="navbar-nav flex-row gap-2">
+                @{
+                    var userId = Context.Session.GetInt32("UserId");
+                    var userName = Context.Session.GetString("UserName");
+                }
+                <ul class="navbar-nav flex-row gap-2 align-items-center">
                     <li class="nav-item">
-               
-                            <a class="btn btn-header px-4 rounded-pill shadow-sm fw-bold" asp-area="" asp-controller="Zasedak" asp-action="Zasedak">Zasedací pořádky</a>
-
+                        <a class="btn btn-header px-4 rounded-pill shadow-sm fw-bold" asp-area="" asp-controller="Zasedak" asp-action="Zasedak">Zasedací pořádky</a>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-header px-4 rounded-pill shadow-sm fw-bold"
@@ -39,6 +41,20 @@
                             O nás
                         </a>
                     </li>
+
+                    @if (userId != null)
+                    {
+                        <li class="nav-item ms-2">
+                            <span class="text-white me-2">@userName</span>
+                            <a class="btn btn-danger" asp-controller="User" asp-action="Logout">Odhlásit se</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item ms-2">
+                            <a class="btn btn-light text-dark" asp-controller="User" asp-action="Login">Přihlásit</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </nav>
